@@ -9,21 +9,27 @@
 /* Begin PBXBuildFile section */
 		D748B3EC24BC95DA0008C3B4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D748B3EB24BC95DA0008C3B4 /* AppDelegate.swift */; };
 		D748B3EE24BC95DA0008C3B4 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D748B3ED24BC95DA0008C3B4 /* SceneDelegate.swift */; };
-		D748B3F024BC95DA0008C3B4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D748B3EF24BC95DA0008C3B4 /* ViewController.swift */; };
 		D748B3F324BC95DA0008C3B4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D748B3F124BC95DA0008C3B4 /* Main.storyboard */; };
 		D748B3F524BC95DB0008C3B4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D748B3F424BC95DB0008C3B4 /* Assets.xcassets */; };
 		D748B3F824BC95DB0008C3B4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D748B3F624BC95DB0008C3B4 /* LaunchScreen.storyboard */; };
+		D748B40624BC96760008C3B4 /* HomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D748B40524BC96760008C3B4 /* HomeController.swift */; };
+		D748B40A24BC98B40008C3B4 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D748B40924BC98B40008C3B4 /* Extensions.swift */; };
+		D748B40C24BC9A670008C3B4 /* HomeNavigationStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D748B40B24BC9A670008C3B4 /* HomeNavigationStackView.swift */; };
+		D748B40E24BCA09E0008C3B4 /* BottomControlsStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D748B40D24BCA09E0008C3B4 /* BottomControlsStackView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		D748B3E824BC95DA0008C3B4 /* TinderClone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TinderClone.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D748B3EB24BC95DA0008C3B4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D748B3ED24BC95DA0008C3B4 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		D748B3EF24BC95DA0008C3B4 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		D748B3F224BC95DA0008C3B4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		D748B3F424BC95DB0008C3B4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D748B3F724BC95DB0008C3B4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D748B3F924BC95DB0008C3B4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D748B40524BC96760008C3B4 /* HomeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeController.swift; sourceTree = "<group>"; };
+		D748B40924BC98B40008C3B4 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		D748B40B24BC9A670008C3B4 /* HomeNavigationStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeNavigationStackView.swift; sourceTree = "<group>"; };
+		D748B40D24BCA09E0008C3B4 /* BottomControlsStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomControlsStackView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,15 +62,66 @@
 		D748B3EA24BC95DA0008C3B4 /* TinderClone */ = {
 			isa = PBXGroup;
 			children = (
+				D748B40424BC95E60008C3B4 /* Model */,
+				D748B40324BC95E50008C3B4 /* View */,
+				D748B40224BC95E40008C3B4 /* ViewModel */,
+				D748B40124BC95E40008C3B4 /* Controller */,
+				D748B40024BC95E30008C3B4 /* API */,
+				D748B3FF24BC95E10008C3B4 /* Utils */,
 				D748B3EB24BC95DA0008C3B4 /* AppDelegate.swift */,
 				D748B3ED24BC95DA0008C3B4 /* SceneDelegate.swift */,
-				D748B3EF24BC95DA0008C3B4 /* ViewController.swift */,
 				D748B3F124BC95DA0008C3B4 /* Main.storyboard */,
 				D748B3F424BC95DB0008C3B4 /* Assets.xcassets */,
 				D748B3F624BC95DB0008C3B4 /* LaunchScreen.storyboard */,
 				D748B3F924BC95DB0008C3B4 /* Info.plist */,
 			);
 			path = TinderClone;
+			sourceTree = "<group>";
+		};
+		D748B3FF24BC95E10008C3B4 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				D748B40924BC98B40008C3B4 /* Extensions.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		D748B40024BC95E30008C3B4 /* API */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = API;
+			sourceTree = "<group>";
+		};
+		D748B40124BC95E40008C3B4 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				D748B40524BC96760008C3B4 /* HomeController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		D748B40224BC95E40008C3B4 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		D748B40324BC95E50008C3B4 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				D748B40B24BC9A670008C3B4 /* HomeNavigationStackView.swift */,
+				D748B40D24BCA09E0008C3B4 /* BottomControlsStackView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		D748B40424BC95E60008C3B4 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -138,9 +195,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D748B3F024BC95DA0008C3B4 /* ViewController.swift in Sources */,
+				D748B40E24BCA09E0008C3B4 /* BottomControlsStackView.swift in Sources */,
 				D748B3EC24BC95DA0008C3B4 /* AppDelegate.swift in Sources */,
 				D748B3EE24BC95DA0008C3B4 /* SceneDelegate.swift in Sources */,
+				D748B40C24BC9A670008C3B4 /* HomeNavigationStackView.swift in Sources */,
+				D748B40624BC96760008C3B4 /* HomeController.swift in Sources */,
+				D748B40A24BC98B40008C3B4 /* Extensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
