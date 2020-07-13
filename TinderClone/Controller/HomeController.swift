@@ -11,6 +11,7 @@ import UIKit
 class HomeController: UIViewController {
     
     //MARK: - Properties
+    
     private let topStack = HomeNavigationStackView()
     private let bottomStack = BottomControlsStackView()
     private let deckView: UIView = {
@@ -21,13 +22,27 @@ class HomeController: UIViewController {
     }()
     
     //MARK: - Lifecycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         configureUI()
+        configureCard()
     }
     
     //MARK: - Helpers
+    
+    func configureCard() {
+        let cardView1 = CardView()
+        let cardView2 = CardView()
+        
+        deckView.addSubview(cardView1)
+        deckView.addSubview(cardView2)
+        cardView1.fillSuperview()
+        cardView2.fillSuperview()
+    }
+    
+    
     func configureUI() {
         view.backgroundColor = .white
         
