@@ -17,6 +17,8 @@
 		D748B40C24BC9A670008C3B4 /* HomeNavigationStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D748B40B24BC9A670008C3B4 /* HomeNavigationStackView.swift */; };
 		D748B40E24BCA09E0008C3B4 /* BottomControlsStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D748B40D24BCA09E0008C3B4 /* BottomControlsStackView.swift */; };
 		D748B41024BCAA560008C3B4 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D748B40F24BCAA560008C3B4 /* CardView.swift */; };
+		D7D92DFC24BDF9E600E610EA /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7D92DFB24BDF9E600E610EA /* User.swift */; };
+		D7D92DFE24BDFADA00E610EA /* CardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7D92DFD24BDFADA00E610EA /* CardViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +34,8 @@
 		D748B40B24BC9A670008C3B4 /* HomeNavigationStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeNavigationStackView.swift; sourceTree = "<group>"; };
 		D748B40D24BCA09E0008C3B4 /* BottomControlsStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomControlsStackView.swift; sourceTree = "<group>"; };
 		D748B40F24BCAA560008C3B4 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
+		D7D92DFB24BDF9E600E610EA /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		D7D92DFD24BDFADA00E610EA /* CardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,6 +110,7 @@
 		D748B40224BC95E40008C3B4 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				D7D92DFD24BDFADA00E610EA /* CardViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -123,6 +128,7 @@
 		D748B40424BC95E60008C3B4 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				D7D92DFB24BDF9E600E610EA /* User.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -202,9 +208,11 @@
 				D748B40E24BCA09E0008C3B4 /* BottomControlsStackView.swift in Sources */,
 				D748B3EC24BC95DA0008C3B4 /* AppDelegate.swift in Sources */,
 				D748B3EE24BC95DA0008C3B4 /* SceneDelegate.swift in Sources */,
+				D7D92DFC24BDF9E600E610EA /* User.swift in Sources */,
 				D748B40C24BC9A670008C3B4 /* HomeNavigationStackView.swift in Sources */,
 				D748B40624BC96760008C3B4 /* HomeController.swift in Sources */,
 				D748B40A24BC98B40008C3B4 /* Extensions.swift in Sources */,
+				D7D92DFE24BDFADA00E610EA /* CardViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
