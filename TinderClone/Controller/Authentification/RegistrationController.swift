@@ -17,6 +17,8 @@ class RegistrationController: UIViewController {
         btn.tintColor = .white
         btn.setImage(#imageLiteral(resourceName: "plus_photo"), for: .normal)
         btn.addTarget(self, action: #selector(handleSelectPhoto), for: .touchUpInside)
+        btn.clipsToBounds = true
+        
         return btn
     }()
     
@@ -48,7 +50,9 @@ class RegistrationController: UIViewController {
     
     //MARK: - Actions
     @objc func handleSelectPhoto(){
-        
+        let picker = UIImagePickerController()
+        picker.delegate = self
+        present(picker, animated: true, completion: nil)
     }
     
     @objc func handleRegisterUser(){
@@ -77,5 +81,20 @@ class RegistrationController: UIViewController {
         
         view.addSubview(goToLoginButton)
         goToLoginButton.anchor(left: view.leftAnchor, bottom: view.safeAreaLayoutGuide.bottomAnchor, right: view.rightAnchor, paddingLeft: 32, paddingRight: 32)
+    }
+}
+
+//MARK: - UIImagePickerControolerDelegate
+
+extension RegistrationController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        let image = info[.originalImage] as? UIImage
+        selectPhotoButton.setImage(image?.withRenderingMode(.alwaysOriginal), for: .normal)
+        selectPhotoButton.layer.borderColor = UIColor(white: 1, alpha: 0.7).cgColor
+        selectPhotoButton.layer.borderWidth = 3
+        selectPhotoButton.layer.cornerRadius = 10
+        selectPhotoButton.imageView?.contentMode = .scaleToFill
+        
+        dismiss(animated: true, completion: nil)
     }
 }
