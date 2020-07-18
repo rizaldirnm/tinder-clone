@@ -15,6 +15,12 @@ class HomeController: UIViewController {
     
     private let topStack = HomeNavigationStackView()
     private let bottomStack = BottomControlsStackView()
+    
+    private var viewModel = [CardViewModel]() {
+        // After set initial user, then configureCard
+        didSet { configureCard() }
+    }
+    
     private let deckView: UIView = {
         let view = UIView()
         return view
@@ -26,9 +32,9 @@ class HomeController: UIViewController {
         super.viewDidLoad()
         
         configureUI()
-        configureCard()
         checkIfUserIsLoggin()
         fetchUser()
+        fetchUsers()
 //        logout()
     }
     
@@ -38,6 +44,13 @@ class HomeController: UIViewController {
         guard let uid = Auth.auth().currentUser?.uid else {return}
         Service.fetchUser(withUid: uid) { (user) in
             print("DEBUG: User is \(user.name)")
+        }
+    }
+    
+    func fetchUsers(){
+        Service.fetchAllUser { (users) in
+            // Initial user after fetch all users from API
+            self.viewModel = users.map({ CardViewModel(user: $0) })
         }
     }
     
@@ -61,17 +74,11 @@ class HomeController: UIViewController {
     //MARK: - Helpers
     
     func configureCard() {
-//        let user1 = User(name: "Jane Down", age: 22, images: [#imageLiteral(resourceName: "jane3"), #imageLiteral(resourceName: "jane1")])
-//        let user2 = User(name: "Megan Rawr", age: 24, images: [#imageLiteral(resourceName: "kelly1"), #imageLiteral(resourceName: "lady5c")])
-//        
-//        let cardView1 = CardView(viewModel: CardViewModel(user: user1))
-//        let cardView2 = CardView(viewModel: CardViewModel(user: user2))
-//        
-//        
-//        deckView.addSubview(cardView1)
-//        deckView.addSubview(cardView2)
-//        cardView1.fillSuperview()
-//        cardView2.fillSuperview()
+        viewModel.forEach { (viewModel) in
+            let cardView = CardView(viewModel: viewModel)
+            deckView.addSubview(cardView)
+            cardView.fillSuperview()
+        }
     }
     
     

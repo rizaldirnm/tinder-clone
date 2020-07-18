@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SDWebImage
  
  enum SwipeDirection: Int {
     case left =  -1
@@ -45,8 +46,8 @@ class CardView: UIView {
         self.viewModel = viewModel
         super.init(frame: .zero)
         
-//        imageView.image = viewModel.user.images.first
-                
+        imageView.sd_setImage(with: viewModel.imageUrl)
+        
         configureGestureRecognizers()
         
         backgroundColor = .systemPurple
@@ -102,7 +103,7 @@ class CardView: UIView {
             viewModel.showPreviousPhoto()
         }
         
-        imageView.image = viewModel.imageToShow
+//        imageView.image = viewModel.imageToShow
     }
     
     //MARK: - Helpers
