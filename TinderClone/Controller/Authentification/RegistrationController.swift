@@ -62,7 +62,6 @@ class RegistrationController: UIViewController {
     }
     
     @objc func handleRegisterUser(){
-        print("DEBUG: processing register user...")
         guard let email = emailTextField.text else {return}
         guard let fullname = fullnameTextField.text else {return}
         guard let password = passwordTextField.text else {return}
@@ -76,7 +75,7 @@ class RegistrationController: UIViewController {
                 return
             }
             
-            print("DEBUG: Successfully create user")
+            self.dismiss(animated: true, completion: nil)
         }
     }
     
@@ -143,7 +142,7 @@ extension RegistrationController: UIImagePickerControllerDelegate, UINavigationC
         selectPhotoButton.layer.borderColor = UIColor(white: 1, alpha: 0.7).cgColor
         selectPhotoButton.layer.borderWidth = 3
         selectPhotoButton.layer.cornerRadius = 10
-        selectPhotoButton.imageView?.contentMode = .scaleToFill
+        selectPhotoButton.imageView?.contentMode = .scaleAspectFill
         
         dismiss(animated: true, completion: nil)
     }

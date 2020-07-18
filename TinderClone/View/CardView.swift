@@ -45,7 +45,7 @@ class CardView: UIView {
         self.viewModel = viewModel
         super.init(frame: .zero)
         
-        imageView.image = viewModel.user.images.first
+//        imageView.image = viewModel.user.images.first
                 
         configureGestureRecognizers()
         
