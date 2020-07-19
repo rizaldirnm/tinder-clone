@@ -8,8 +8,16 @@
 
 import UIKit
 
+protocol HomeNavigationStackViewDelegate: class {
+    func showSetting()
+    func showMessage()
+}
+
 class HomeNavigationStackView: UIStackView {
     //MARK: - Properties
+    
+    weak var delegate: HomeNavigationStackViewDelegate?
+    
     let settingsButton = UIButton(type: .system)
     let messageButton = UIButton(type: .system)
     let tinderIcon = UIImageView(image: #imageLiteral(resourceName: "app_icon"))
@@ -22,7 +30,10 @@ class HomeNavigationStackView: UIStackView {
         heightAnchor.constraint(equalToConstant: 80).isActive = true
         tinderIcon.contentMode = .scaleAspectFit
         settingsButton.setImage(#imageLiteral(resourceName: "top_left_profile").withRenderingMode(.alwaysOriginal), for: .normal)
+        settingsButton.addTarget(self, action: #selector(handleSettings), for: .touchUpInside)
+        
         messageButton.setImage(#imageLiteral(resourceName: "top_messages_icon").withRenderingMode(.alwaysOriginal), for: .normal)
+        messageButton.addTarget(self, action: #selector(handleMessage), for: .touchUpInside)
         
         [settingsButton, UIView(), tinderIcon, UIView(), messageButton].forEach { view in
             addArrangedSubview(view)
@@ -35,5 +46,14 @@ class HomeNavigationStackView: UIStackView {
     
     required init(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    //MARK: - Actions
+    @objc func handleSettings(){
+        delegate?.showSetting()
+    }
+    
+    @objc func handleMessage(){
+        delegate?.showMessage()
     }
 }

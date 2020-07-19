@@ -13,6 +13,8 @@ class HomeController: UIViewController {
     
     //MARK: - Properties
     
+    private var user: User?
+    
     private let topStack = HomeNavigationStackView()
     private let bottomStack = BottomControlsStackView()
     
@@ -43,7 +45,7 @@ class HomeController: UIViewController {
     func fetchUser(){
         guard let uid = Auth.auth().currentUser?.uid else {return}
         Service.fetchUser(withUid: uid) { (user) in
-            print("DEBUG: User is \(user.name)")
+            self.user = user
         }
     }
     
@@ -84,6 +86,7 @@ class HomeController: UIViewController {
     
     func configureUI() {
         view.backgroundColor = .white
+        topStack.delegate = self
         
         let stack = UIStackView(arrangedSubviews: [topStack, deckView, bottomStack])
         stack.axis = .vertical
@@ -104,4 +107,20 @@ class HomeController: UIViewController {
             self.present(nav, animated: true, completion: nil)
         }
     }
+}
+
+extension HomeController: HomeNavigationStackViewDelegate {
+    func showSetting() {
+        guard let user = self.user else {return}
+        
+        let controller = SettingsController(user: user)
+        let nav =  UINavigationController(rootViewController: controller)
+        nav.modalPresentationStyle = .fullScreen
+        present(nav, animated: true, completion: nil)
+    }
+    
+    func showMessage() {
+        print(456)
+    }
+    
 }
