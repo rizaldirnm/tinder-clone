@@ -10,14 +10,20 @@ import UIKit
 
 private let reuseIdentifier = "SettingsCell"
 
+protocol SettingsControllerDelegate: class {
+    func settingsController(_ controller: SettingsController, wantsToUpdate user: User)
+}
+
 class SettingsController: UITableViewController {
     
     //MARK: - Properties
-    private let user: User
+    private var user: User
     
     private let headerView = SettingHeader()
     private let imagePicker = UIImagePickerController()
     private var imageIndex = 0
+    
+    weak var delegate: SettingsControllerDelegate?
     
     //MARK: - Lifecycle
     
@@ -41,7 +47,8 @@ class SettingsController: UITableViewController {
     }
     
     @objc func handleDone(){
-        dismiss(animated: true, completion: nil)
+        view.endEditing(true)
+        delegate?.settingsController(self, wantsToUpdate: user)
     }
     
     //MARK: - Helpers
@@ -88,6 +95,8 @@ extension SettingsController {
         let viewModel = SettingsViewModel(user: user, section: section)
         cell.viewModel = viewModel
         
+        cell.delegate = self
+        
         return cell
     }
 }
@@ -128,5 +137,25 @@ extension SettingsController: UIImagePickerControllerDelegate, UINavigationContr
         
         setHeaderImage(selectedImage)
         dismiss(animated: true, completion: nil)
+    }
+}
+
+//MARK: - SettingCellDelegate
+extension SettingsController: SettingCellDelegate {
+    func settingCell(_ cell: SettingCell, wantsToUpdateUserWith value: String, for section: SettingsSection) {
+        
+        switch section {
+            
+        case .name:
+            user.name = value
+        case .profession:
+            user.profession = value
+        case .age:
+            user.age = Int(value) ?? user.age
+        case .bio:
+            user.bio = value
+        case .ageRange:
+            break
+        }
     }
 }

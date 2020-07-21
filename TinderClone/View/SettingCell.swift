@@ -8,9 +8,15 @@
 
 import UIKit
 
+protocol SettingCellDelegate: class {
+    func settingCell(_ cell: SettingCell, wantsToUpdateUserWith value: String, for section: SettingsSection)
+}
+
 class SettingCell: UITableViewCell {
     
     //MARK: - Properties
+    
+    weak var delegate: SettingCellDelegate?
     
     var viewModel: SettingsViewModel! {
         didSet { configure() }
@@ -20,12 +26,13 @@ class SettingCell: UITableViewCell {
         let tf = UITextField()
         tf.borderStyle = .none
         tf.font = UIFont.systemFont(ofSize: 16)
-        tf.placeholder = "Enter value here..."
         
         let paddingView = UIView()
         paddingView.setDimensions(height: 50, width: 28)
         tf.leftView = paddingView
         tf.leftViewMode = .always
+        
+        tf.addTarget(self, action: #selector(handleUpdateUserInfo), for: .editingDidEnd)
         
         return tf
     }()
@@ -76,11 +83,19 @@ class SettingCell: UITableViewCell {
         
     }
     
+    @objc func handleUpdateUserInfo(sender: UITextField){
+        guard let value = sender.text else {return}
+        delegate?.settingCell(self, wantsToUpdateUserWith: value, for: viewModel.section)
+    }
+    
     //MARK: - Helpers
     
     func configure(){
         inputField.isHidden = viewModel.shouldHideInputField
         sliderStack.isHidden = viewModel.shouldHideSlider
+        
+        inputField.placeholder = viewModel.placeholderText
+        inputField.text = viewModel.value
     }
     
     func createAgeRangeSlider() -> UISlider{
