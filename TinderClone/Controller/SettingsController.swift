@@ -13,6 +13,7 @@ private let reuseIdentifier = "SettingsCell"
 
 protocol SettingsControllerDelegate: class {
     func settingsController(_ controller: SettingsController, wantsToUpdate user: User)
+    func settingsControllerWantToLogOut(_ controller: SettingsController)
 }
 
 class SettingsController: UITableViewController {
@@ -21,6 +22,7 @@ class SettingsController: UITableViewController {
     private var user: User
     
     private lazy var headerView = SettingHeader(user: user)
+    private let footerView = SettingFooter()
     private let imagePicker = UIImagePickerController()
     private var imageIndex = 0
     
@@ -59,6 +61,7 @@ class SettingsController: UITableViewController {
     }
     
     //MARK: - API
+    
     func uploadImage(image: UIImage) {
         let hud = JGProgressHUD(style: .dark)
         hud.textLabel.text = "Saving Image"
@@ -93,6 +96,10 @@ class SettingsController: UITableViewController {
         tableView.backgroundColor = .systemGroupedBackground
         tableView.register(SettingCell.self, forCellReuseIdentifier: reuseIdentifier)
         headerView.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: 300)
+        
+        tableView.tableFooterView = footerView
+        footerView.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: 88)
+        footerView.delegate = self
     }
 }
 
@@ -186,4 +193,13 @@ extension SettingsController: SettingCellDelegate {
             break
         }
     }
+}
+
+
+extension SettingsController: SettingFooterDelegate {
+    func handleLogout() {
+        delegate?.settingsControllerWantToLogOut(self)
+    }
+    
+    
 }

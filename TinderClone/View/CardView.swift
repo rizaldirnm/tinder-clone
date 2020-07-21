@@ -18,6 +18,8 @@ class CardView: UIView {
     //MARK: - Properties
     
     private let gradientLayer = CAGradientLayer()
+    private let barStackView = UIStackView()
+    
     private let viewModel: CardViewModel
     
     private let imageView: UIImageView = {
@@ -50,7 +52,6 @@ class CardView: UIView {
         
         configureGestureRecognizers()
         
-        backgroundColor = .systemPurple
         layer.cornerRadius = 10
         clipsToBounds = true
         
@@ -66,6 +67,7 @@ class CardView: UIView {
         infoButton.setDimensions(height: 40, width: 40)
         infoButton.centerY(inView: infoLabel)
         infoButton.anchor(right: rightAnchor, paddingRight: 16)
+        configureBarStackView()
     }
     
     required init?(coder: NSCoder) {
@@ -103,7 +105,10 @@ class CardView: UIView {
             viewModel.showPreviousPhoto()
         }
         
-//        imageView.image = viewModel.imageToShow
+        imageView.sd_setImage(with: viewModel.imageUrl)
+        
+        barStackView.arrangedSubviews.forEach({ $0.backgroundColor = .barDeselectedColor })
+        barStackView.arrangedSubviews[viewModel.index].backgroundColor = .white
     }
     
     //MARK: - Helpers
@@ -120,6 +125,19 @@ class CardView: UIView {
         gradientLayer.colors = [UIColor.clear.cgColor, UIColor.black.cgColor]
         gradientLayer.locations = [0.5, 1.1]
         layer.addSublayer(gradientLayer)
+    }
+    
+    func configureBarStackView(){
+        (0..<viewModel.imageURLs.count).forEach { _ in
+            let barview = UIView()
+            barview.backgroundColor = .barDeselectedColor
+            barStackView.addArrangedSubview(barview)
+        }
+        barStackView.arrangedSubviews.first?.backgroundColor = .white
+        addSubview(barStackView)
+        barStackView.anchor(top: topAnchor, left:leftAnchor, right: rightAnchor, paddingTop: 8, paddingLeft: 8, paddingRight: 8, height: 4)
+        barStackView.spacing = 4
+        barStackView.distribution = .fillEqually
     }
     
     func configureGestureRecognizers(){

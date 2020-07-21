@@ -37,7 +37,6 @@ class HomeController: UIViewController {
         checkIfUserIsLoggin()
         fetchUser()
         fetchUsers()
-//        logout()
     }
     
     //MARK: - API
@@ -131,6 +130,11 @@ extension HomeController: HomeNavigationStackViewDelegate {
 //MARK: - SettingCellDelegate
 
 extension HomeController: SettingsControllerDelegate {
+    func settingsControllerWantToLogOut(_ controller: SettingsController) {
+        controller.dismiss(animated: true, completion: nil)
+        logout()
+    }
+    
     func settingsController(_ controller: SettingsController, wantsToUpdate user: User) {
         controller.dismiss(animated: true, completion: nil)
         self.user = user

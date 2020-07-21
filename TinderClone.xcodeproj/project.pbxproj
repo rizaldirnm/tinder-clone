@@ -18,6 +18,7 @@
 		D748B40C24BC9A670008C3B4 /* HomeNavigationStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D748B40B24BC9A670008C3B4 /* HomeNavigationStackView.swift */; };
 		D748B40E24BCA09E0008C3B4 /* BottomControlsStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D748B40D24BCA09E0008C3B4 /* BottomControlsStackView.swift */; };
 		D748B41024BCAA560008C3B4 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D748B40F24BCAA560008C3B4 /* CardView.swift */; };
+		D74D135624C6FA74003A24EE /* SettingFooter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D74D135524C6FA74003A24EE /* SettingFooter.swift */; };
 		D75DB46E24C4165D00F118C3 /* SettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D75DB46D24C4165D00F118C3 /* SettingsController.swift */; };
 		D75DB47024C41A0100F118C3 /* SettingHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = D75DB46F24C41A0100F118C3 /* SettingHeader.swift */; };
 		D75DB47224C429A500F118C3 /* SettingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D75DB47124C429A500F118C3 /* SettingCell.swift */; };
@@ -50,6 +51,7 @@
 		D748B40B24BC9A670008C3B4 /* HomeNavigationStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeNavigationStackView.swift; sourceTree = "<group>"; };
 		D748B40D24BCA09E0008C3B4 /* BottomControlsStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomControlsStackView.swift; sourceTree = "<group>"; };
 		D748B40F24BCAA560008C3B4 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
+		D74D135524C6FA74003A24EE /* SettingFooter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingFooter.swift; sourceTree = "<group>"; };
 		D75DB46D24C4165D00F118C3 /* SettingsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsController.swift; sourceTree = "<group>"; };
 		D75DB46F24C41A0100F118C3 /* SettingHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingHeader.swift; sourceTree = "<group>"; };
 		D75DB47124C429A500F118C3 /* SettingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingCell.swift; sourceTree = "<group>"; };
@@ -178,11 +180,10 @@
 		D748B40324BC95E50008C3B4 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				D74D135724C6FA8E003A24EE /* Settings */,
 				D748B40B24BC9A670008C3B4 /* HomeNavigationStackView.swift */,
 				D748B40D24BCA09E0008C3B4 /* BottomControlsStackView.swift */,
 				D748B40F24BCAA560008C3B4 /* CardView.swift */,
-				D75DB46F24C41A0100F118C3 /* SettingHeader.swift */,
-				D75DB47124C429A500F118C3 /* SettingCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -193,6 +194,16 @@
 				D7D92DFB24BDF9E600E610EA /* User.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		D74D135724C6FA8E003A24EE /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				D75DB47124C429A500F118C3 /* SettingCell.swift */,
+				D74D135524C6FA74003A24EE /* SettingFooter.swift */,
+				D75DB46F24C41A0100F118C3 /* SettingHeader.swift */,
+			);
+			path = Settings;
 			sourceTree = "<group>";
 		};
 		D78869F924BF4580004A06F4 /* Authentification */ = {
@@ -323,6 +334,7 @@
 				D75DB46E24C4165D00F118C3 /* SettingsController.swift in Sources */,
 				D75DB47024C41A0100F118C3 /* SettingHeader.swift in Sources */,
 				D748B41024BCAA560008C3B4 /* CardView.swift in Sources */,
+				D74D135624C6FA74003A24EE /* SettingFooter.swift in Sources */,
 				D788EDAC24C330C000D0D85A /* Constants.swift in Sources */,
 				D77CA22324C092C000A3CFEA /* AuthButton.swift in Sources */,
 				D748B40E24BCA09E0008C3B4 /* BottomControlsStackView.swift in Sources */,
