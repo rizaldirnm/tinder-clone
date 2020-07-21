@@ -10,6 +10,7 @@ import UIKit
 
 protocol SettingCellDelegate: class {
     func settingCell(_ cell: SettingCell, wantsToUpdateUserWith value: String, for section: SettingsSection)
+    func settingCell(_ cell: SettingCell, wantsToUpdateAgeRangeWith sender: UISlider)
 }
 
 class SettingCell: UITableViewCell {
@@ -51,8 +52,7 @@ class SettingCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
-        minAgeLabel.text = "Min: 18"
-        maxAgeLable.text = "Max: 60"
+        selectionStyle = .none
         
         addSubview(inputField)
         inputField.fillSuperview()
@@ -79,8 +79,14 @@ class SettingCell: UITableViewCell {
     
     //MARK: - Actions
     
-    @objc func handleValueChange(){
+    @objc func handleAgeRangeChanged(sender: UISlider){
+        if sender == minAgeSlider {
+            minAgeLabel.text = viewModel.minAgeLableText(forValue: sender.value)
+        } else {
+            maxAgeLable.text = viewModel.maxAgeLableText(forValue: sender.value)
+        }
         
+        delegate?.settingCell(self, wantsToUpdateAgeRangeWith: sender )
     }
     
     @objc func handleUpdateUserInfo(sender: UITextField){
@@ -96,13 +102,19 @@ class SettingCell: UITableViewCell {
         
         inputField.placeholder = viewModel.placeholderText
         inputField.text = viewModel.value
+        
+        minAgeLabel.text = viewModel.minAgeLableText(forValue: viewModel.minAgeSliderValue)
+        maxAgeLable.text = viewModel.maxAgeLableText(forValue: viewModel.maxAgeSliderValue)
+        
+        minAgeSlider.setValue(viewModel.minAgeSliderValue, animated: true)
+        maxAgeSlider.setValue(viewModel.maxAgeSliderValue, animated: true)
     }
     
     func createAgeRangeSlider() -> UISlider{
         let slider = UISlider()
         slider.minimumValue = 18
         slider.maximumValue = 60
-        slider.addTarget(self, action: #selector(handleValueChange), for: .valueChanged)
+        slider.addTarget(self, action: #selector(handleAgeRangeChanged), for: .valueChanged)
         return slider
     }
 }

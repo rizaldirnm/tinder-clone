@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import JGProgressHUD
 
 private let reuseIdentifier = "SettingsCell"
 
@@ -19,7 +20,7 @@ class SettingsController: UITableViewController {
     //MARK: - Properties
     private var user: User
     
-    private let headerView = SettingHeader()
+    private lazy var headerView = SettingHeader(user: user)
     private let imagePicker = UIImagePickerController()
     private var imageIndex = 0
     
@@ -48,7 +49,25 @@ class SettingsController: UITableViewController {
     
     @objc func handleDone(){
         view.endEditing(true)
-        delegate?.settingsController(self, wantsToUpdate: user)
+        let hud = JGProgressHUD(style: .dark)
+        hud.textLabel.text = "Saving Your Data"
+        hud.show(in: view)
+        Service.saveUserData(user: user) { (error) in
+            self.delegate?.settingsController(self, wantsToUpdate: self.user)
+        }
+        
+    }
+    
+    //MARK: - API
+    func uploadImage(image: UIImage) {
+        let hud = JGProgressHUD(style: .dark)
+        hud.textLabel.text = "Saving Image"
+        hud.show(in: view)
+        
+        Service.uploadImage(image: image) { (imageUrl) in
+            self.user.imageURLs.append(imageUrl)
+            hud.dismiss()
+        }
     }
     
     //MARK: - Helpers
@@ -133,8 +152,9 @@ extension SettingsController: SettingHeaderDelegate {
 
 extension SettingsController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        let selectedImage = info[.originalImage] as? UIImage
+        guard let selectedImage = info[.originalImage] as? UIImage else { return }
         
+        uploadImage(image: selectedImage)
         setHeaderImage(selectedImage)
         dismiss(animated: true, completion: nil)
     }
@@ -142,6 +162,14 @@ extension SettingsController: UIImagePickerControllerDelegate, UINavigationContr
 
 //MARK: - SettingCellDelegate
 extension SettingsController: SettingCellDelegate {
+    func settingCell(_ cell: SettingCell, wantsToUpdateAgeRangeWith sender: UISlider) {
+        if sender == cell.minAgeSlider {
+            user.minSeekingAge = Int(sender.value)
+        } else {
+            user.maxSeekingAge = Int(sender.value)
+        }
+    }
+    
     func settingCell(_ cell: SettingCell, wantsToUpdateUserWith value: String, for section: SettingsSection) {
         
         switch section {

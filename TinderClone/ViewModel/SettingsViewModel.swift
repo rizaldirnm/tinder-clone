@@ -43,6 +43,22 @@ struct SettingsViewModel{
         return section != .ageRange
     }
     
+    var minAgeSliderValue: Float {
+        return Float(user.minSeekingAge)
+    }
+    
+    var maxAgeSliderValue: Float {
+        return Float(user.maxSeekingAge)
+    }
+    
+    func minAgeLableText(forValue value: Float) -> String {
+        return "Min: \(Int(value))"
+    }
+    
+    func maxAgeLableText(forValue value: Float) -> String {
+        return "Min: \(Int(value))"
+    }
+    
     init(user: User, section: SettingsSection) {
         self.user = user
         self.section = section
